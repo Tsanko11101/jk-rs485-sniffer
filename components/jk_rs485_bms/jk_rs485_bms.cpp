@@ -3,7 +3,7 @@
 
 // Include the ESP object for ESP8266 specific functions like ESP.getFreeHeap()
 #ifdef USE_ESP8266
-#include <Esp.h> // For ESP.getFreeHeap() on ESP8266
+#include "Esp.h" // For ESP.getFreeHeap() on ESP8266
 #endif
 
 // Include for logging
