@@ -23,7 +23,7 @@
 //#define ICACHE_FLASH_ATTR
 
 // Make compatible to old SDK
-#define ICACHE_RODATA_ATTR
+//#define ICACHE_RODATA_ATTR
 
 // Forces code into IRAM instead of flash.
 #define IRAM_ATTR _SECTION_ATTR_IMPL(".iram1", __COUNTER__)
