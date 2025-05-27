@@ -1782,7 +1782,7 @@ void JkRS485Bms::publish_state_(JkRS485BmsSwitch *obj, const bool &state) {
   ESP_LOGD("jk_rs485_bms", "Compiling for ESP8266: Using ESP.getFreeHeap().");
   // For ESP8266, use ESP.getFreeHeap().
   // This gets the total free heap memory available on ESP8266.
-  current_free_heap = ESP.getFreeHeap(); //free_heap = ESP.getFreeHeap();
+  free_heap = ESP.getFreeHeap();
 #else
   // Fallback for other platforms or if platform is not defined (should not happen in ESPHome).
   // Initialize to 0 or a sensible default.
@@ -1824,7 +1824,7 @@ void JkRS485Bms::publish_state_(JkRS485BmsNumber *number, float value) {
   ESP_LOGD("jk_rs485_bms", "Compiling for ESP8266: Using ESP.getFreeHeap().");
   // For ESP8266, use ESP.getFreeHeap().
   // This gets the total free heap memory available on ESP8266.
-  current_free_heap = ESP.getFreeHeap(); //free_heap = ESP.getFreeHeap();
+  free_heap = ESP.getFreeHeap();
 #else
   // Fallback for other platforms or if platform is not defined (should not happen in ESPHome).
   // Initialize to 0 or a sensible default.
