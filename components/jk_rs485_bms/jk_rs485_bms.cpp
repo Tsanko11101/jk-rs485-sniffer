@@ -1770,7 +1770,7 @@ void JkRS485Bms::publish_state_(JkRS485BmsSwitch *obj, const bool &state) {
     ESP_LOGVV(TAG, "Object is nullptr");
     return;
   }
-
+size_t free_heap;
   //const size_t free_heap = heap_caps_get_largest_free_block(MALLOC_CAP_8BIT);
 
   // Use platform-specific functions to get free heap memory.
@@ -1808,7 +1808,7 @@ void JkRS485Bms::publish_state_(JkRS485BmsNumber *number, float value) {
     ESP_LOGVV(TAG, "Object is nullptr");
     return;
   }
-
+size_t free_heap;
   //const size_t free_heap = heap_caps_get_largest_free_block(MALLOC_CAP_8BIT);
 
 // Use platform-specific functions to get free heap memory.
