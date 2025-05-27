@@ -1769,7 +1769,7 @@ void JkRS485Bms::publish_state_(JkRS485BmsSwitch *obj, const bool &state) {
   if (obj == nullptr) {
     ESP_LOGVV(TAG, "Object is nullptr");
     return;
-    size_t current_free_heap = ESP.getFreeHeap(); //size_t free_heap;
+     //size_t free_heap;
 
  // Use platform-specific functions to get free heap memory.
   // USE_ESP32 and USE_ESP8266 are macros defined by ESPHome based on the target board.
@@ -1782,7 +1782,7 @@ void JkRS485Bms::publish_state_(JkRS485BmsSwitch *obj, const bool &state) {
   ESP_LOGD("jk_rs485_bms", "Compiling for ESP8266: Using ESP.getFreeHeap().");
   // For ESP8266, use ESP.getFreeHeap().
   // This gets the total free heap memory available on ESP8266.
-  free_heap = ESP.getFreeHeap();
+  size_t current_free_heap = ESP.getFreeHeap(); //free_heap = ESP.getFreeHeap();
 #else
   // Fallback for other platforms or if platform is not defined (should not happen in ESPHome).
   // Initialize to 0 or a sensible default.
@@ -1811,7 +1811,7 @@ void JkRS485Bms::publish_state_(JkRS485BmsNumber *number, float value) {
   if (number == nullptr) {
     ESP_LOGVV(TAG, "Object is nullptr");
     return;
-    size_t current_free_heap = ESP.getFreeHeap(); //size_t free_heap;
+     //size_t free_heap;
 
 // Use platform-specific functions to get free heap memory.
   // USE_ESP32 and USE_ESP8266 are macros defined by ESPHome based on the target board.
@@ -1824,7 +1824,7 @@ void JkRS485Bms::publish_state_(JkRS485BmsNumber *number, float value) {
   ESP_LOGD("jk_rs485_bms", "Compiling for ESP8266: Using ESP.getFreeHeap().");
   // For ESP8266, use ESP.getFreeHeap().
   // This gets the total free heap memory available on ESP8266.
-  free_heap = ESP.getFreeHeap();
+  size_t current_free_heap = ESP.getFreeHeap(); //free_heap = ESP.getFreeHeap();
 #else
   // Fallback for other platforms or if platform is not defined (should not happen in ESPHome).
   // Initialize to 0 or a sensible default.
