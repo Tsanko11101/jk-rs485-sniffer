@@ -1769,9 +1769,9 @@ void JkRS485Bms::publish_state_(JkRS485BmsSwitch *obj, const bool &state) {
   if (obj == nullptr) {
     ESP_LOGVV(TAG, "Object is nullptr");
     return;
-     //size_t free_heap;
+    size_t free_heap;
 
- // Use platform-specific functions to get free heap memory.
+  // Use platform-specific functions to get free heap memory.
   // USE_ESP32 and USE_ESP8266 are macros defined by ESPHome based on the target board.
 #ifdef USE_ESP32
   ESP_LOGD("jk_rs485_bms", "Compiling for ESP32: Using heap_caps_get_largest_free_block.");
@@ -1811,9 +1811,9 @@ void JkRS485Bms::publish_state_(JkRS485BmsNumber *number, float value) {
   if (number == nullptr) {
     ESP_LOGVV(TAG, "Object is nullptr");
     return;
-     //size_t free_heap;
+    size_t free_heap;
 
-// Use platform-specific functions to get free heap memory.
+  // Use platform-specific functions to get free heap memory.
   // USE_ESP32 and USE_ESP8266 are macros defined by ESPHome based on the target board.
 #ifdef USE_ESP32
   ESP_LOGD("jk_rs485_bms", "Compiling for ESP32: Using heap_caps_get_largest_free_block.");
