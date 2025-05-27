@@ -26,7 +26,7 @@
 //#define ICACHE_RODATA_ATTR
 
 // Forces code into IRAM instead of flash.
-#define IRAM_ATTR _SECTION_ATTR_IMPL(".iram1", __COUNTER__)
+//#define IRAM_ATTR _SECTION_ATTR_IMPL(".iram1", __COUNTER__)
 
 // Forces data into DRAM instead of flash
 #define DRAM_ATTR _SECTION_ATTR_IMPL(".dram0", __COUNTER__)
