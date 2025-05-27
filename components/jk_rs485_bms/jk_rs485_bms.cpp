@@ -1,6 +1,20 @@
 #include "jk_rs485_bms.h"
 #include "esp_heap_caps.h"
 
+// Include the ESP object for ESP8266 specific functions like ESP.getFreeHeap()
+#ifdef USE_ESP8266
+#include "Esp.h" // For ESP.getFreeHeap() on ESP8266
+#endif
+
+// Include for logging
+#include "esphome/core/log.h" // For ESP_LOGD, ESP_LOGW etc.
+
+// If MALLOC_CAP_8BIT is not defined by the ESP-IDF headers in this build environment,
+// we define it manually with its standard value. This helps resolve the "not declared" error
+// specifically for ESP32 builds where it might be missing.
+#ifndef MALLOC_CAP_8BIT
+    #define MALLOC_CAP_8BIT (1 << 0)
+#endif
 
 //std::string uint32_to_binary(uint32_t value) {
 //    std::string binary_representation(32, '0');
@@ -1755,9 +1769,34 @@ void JkRS485Bms::publish_state_(JkRS485BmsSwitch *obj, const bool &state) {
   if (obj == nullptr) {
     ESP_LOGVV(TAG, "Object is nullptr");
     return;
+    size_t free_heap;
+
+  // Use platform-specific functions to get free heap memory.
+  // USE_ESP32 and USE_ESP8266 are macros defined by ESPHome based on the target board.
+#ifdef USE_ESP32
+  ESP_LOGD("jk_rs485_bms", "Compiling for ESP32: Using heap_caps_get_largest_free_block.");
+  // For ESP32, use heap_caps_get_largest_free_block with MALLOC_CAP_8BIT.
+  // This gets the largest contiguous block of 8-bit accessible DRAM.
+  free_heap = heap_caps_get_largest_free_block(MALLOC_CAP_8BIT);
+#elif USE_ESP8266
+  ESP_LOGD("jk_rs485_bms", "Compiling for ESP8266: Using ESP.getFreeHeap().");
+  // For ESP8266, use ESP.getFreeHeap().
+  // This gets the total free heap memory available on ESP8266.
+  free_heap = ESP.getFreeHeap();
+#else
+  // Fallback for other platforms or if platform is not defined (should not happen in ESPHome).
+  // Initialize to 0 or a sensible default.
+  free_heap = 0;
+  ESP_LOGW("jk_rs485_bms", "Unknown platform, cannot get free heap size. Defaulting to 0.");
+#endif
+
+  ESP_LOGD("jk_rs485_bms", "Free Heap: %u bytes", free_heap);
+      
   }
 
-  const size_t free_heap = heap_caps_get_largest_free_block(MALLOC_CAP_8BIT);
+  //const size_t free_heap = heap_caps_get_largest_free_block(MALLOC_CAP_8BIT);
+
+ 
 
   if (reinterpret_cast<uintptr_t>(obj) > 0x3f000000) {
     ESP_LOGV(TAG, "       ]* Publishing state %d for object with address %p [%f] %s", state, (void*)obj, ((float)free_heap/1024), obj->get_name().c_str());
@@ -1772,9 +1811,34 @@ void JkRS485Bms::publish_state_(JkRS485BmsNumber *number, float value) {
   if (number == nullptr) {
     ESP_LOGVV(TAG, "Object is nullptr");
     return;
+    size_t free_heap;
+
+  // Use platform-specific functions to get free heap memory.
+  // USE_ESP32 and USE_ESP8266 are macros defined by ESPHome based on the target board.
+#ifdef USE_ESP32
+  ESP_LOGD("jk_rs485_bms", "Compiling for ESP32: Using heap_caps_get_largest_free_block.");
+  // For ESP32, use heap_caps_get_largest_free_block with MALLOC_CAP_8BIT.
+  // This gets the largest contiguous block of 8-bit accessible DRAM.
+  free_heap = heap_caps_get_largest_free_block(MALLOC_CAP_8BIT);
+#elif USE_ESP8266
+  ESP_LOGD("jk_rs485_bms", "Compiling for ESP8266: Using ESP.getFreeHeap().");
+  // For ESP8266, use ESP.getFreeHeap().
+  // This gets the total free heap memory available on ESP8266.
+  free_heap = ESP.getFreeHeap();
+#else
+  // Fallback for other platforms or if platform is not defined (should not happen in ESPHome).
+  // Initialize to 0 or a sensible default.
+  free_heap = 0;
+  ESP_LOGW("jk_rs485_bms", "Unknown platform, cannot get free heap size. Defaulting to 0.");
+#endif
+
+  ESP_LOGD("jk_rs485_bms", "Free Heap: %u bytes", free_heap);
+    
   }
 
-  const size_t free_heap = heap_caps_get_largest_free_block(MALLOC_CAP_8BIT);
+  //const size_t free_heap = heap_caps_get_largest_free_block(MALLOC_CAP_8BIT);
+
+  
 
   if (reinterpret_cast<uintptr_t>(number) > 0x3f000000) {
     ESP_LOGV(TAG, "       ]* Publishing state %f for object with address %p [%f] %s", value, (void*)number, ((float)free_heap/1024), number->get_name().c_str());
