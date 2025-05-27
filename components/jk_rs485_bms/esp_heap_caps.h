@@ -9,7 +9,7 @@
 #include <stdint.h>
 #include <stdlib.h>
 #include "multi_heap.h"
-#include <sdkconfig.h>
+#include "sdkconfig.h"
 #include "esp_err.h"
 #include "esp_attr.h"
 
