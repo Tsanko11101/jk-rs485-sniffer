@@ -20,7 +20,7 @@
 //to other memory regions.
 
 // Make compatible to old SDK
-#define ICACHE_FLASH_ATTR
+//#define ICACHE_FLASH_ATTR
 
 // Make compatible to old SDK
 #define ICACHE_RODATA_ATTR
