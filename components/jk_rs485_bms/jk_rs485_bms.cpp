@@ -1771,7 +1771,7 @@ void JkRS485Bms::publish_state_(JkRS485BmsSwitch *obj, const bool &state) {
     return;
   }
 
-  const size_t free_heap = heap_caps_get_largest_free_block(MALLOC_CAP_8BIT);
+  //const size_t free_heap = heap_caps_get_largest_free_block(MALLOC_CAP_8BIT);
 
   // Use platform-specific functions to get free heap memory.
   // USE_ESP32 and USE_ESP8266 are macros defined by ESPHome based on the target board.
@@ -1809,7 +1809,7 @@ void JkRS485Bms::publish_state_(JkRS485BmsNumber *number, float value) {
     return;
   }
 
-  const size_t free_heap = heap_caps_get_largest_free_block(MALLOC_CAP_8BIT);
+  //const size_t free_heap = heap_caps_get_largest_free_block(MALLOC_CAP_8BIT);
 
 // Use platform-specific functions to get free heap memory.
   // USE_ESP32 and USE_ESP8266 are macros defined by ESPHome based on the target board.
