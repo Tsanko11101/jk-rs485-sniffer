@@ -1,4 +1,5 @@
 #include "jk_rs485_bms.h"
+#include "esp_heap_caps.h"
 
 
 //std::string uint32_to_binary(uint32_t value) {
