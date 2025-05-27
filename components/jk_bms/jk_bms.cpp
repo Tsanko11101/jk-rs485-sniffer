@@ -1,6 +1,7 @@
 #include "jk_bms.h"
 #include "esphome/core/log.h"
 #include "esphome/core/helpers.h"
+#include "esp_heap_caps.h"
 
 namespace esphome {
 namespace jk_bms {
